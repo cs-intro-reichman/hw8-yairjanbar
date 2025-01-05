@@ -61,10 +61,10 @@
     public boolean addFollowee(String name) {
         //// Replace the following statement with your code
         for (int i=0; i<follows.length;i++) {
-            if (follows[i] == name) {
+            if (follows[i].equals(name)) {
                 return false;
             }
-            if (follows[i] == null) {
+            if (follows[i].equals(null)) {
                 follows[i] = name;
                 return true;
             }
@@ -76,7 +76,30 @@
      *  If the name is not in the list, does nothing and returns false. */
     public boolean removeFollowee(String name) {
         //// Replace the following statement with your code
-        return false;
+        boolean isTheUser = false;
+        for (int i=0;i<follows.length;i++) {
+            if (!isTheUser) {
+                if (follows[i].equals(name)) {
+                    if (i!=follows.length-1) {
+                        follows[i] = follows [i+1];
+                    }
+                    else {
+                        follows[i] = null;
+                    }
+                    isTheUser = true;
+                }
+            }
+            else {
+                if (i!=follows.length-1) {
+                    follows[i] = follows [i+1];
+                }
+                else {
+                    follows[i] = null;
+                }
+            }
+        }
+        if (isTheUser) return true;
+        else return false;
     }
 
     /** Counts the number of users that both this user and the other user follow.
