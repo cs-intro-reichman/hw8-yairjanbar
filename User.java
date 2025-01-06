@@ -82,6 +82,7 @@
      *  If the name is not in the list, does nothing and returns false. */
     public boolean removeFollowee(String name) {
         //// Replace the following statement with your code
+        if (name == null) return false;
         char firstL = name.charAt(0);
         if (firstL >= 'a' && firstL <= 'z') {
             firstL = (char) (firstL - 32);
@@ -136,9 +137,9 @@
     public boolean isFriendOf(User other) {
         //// Replace the following statement with your code
         for (int i =0;i<this.follows.length;i++) {
-            if (this.follows[i] == other.name) {
+            if (this.follows[i] != null && this.follows[i].equals(other.name)) {
                 for (int j =0;j<other.follows.length;j++) {
-                    if (other.follows[j] == this.name) {
+                    if (other.follows[j] != null && other.follows[j].equals(this.name)) {
                         return true;
                     }
                 }
