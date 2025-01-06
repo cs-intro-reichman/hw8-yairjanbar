@@ -60,12 +60,17 @@
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
         //// Replace the following statement with your code
+        char firstL = name.charAt(0);
+        if (firstL >= 'a' && firstL <= 'z') {
+            firstL = (char) (firstL - 32);
+        }
+        String newName = firstL + name.substring(1);
         for (int i=0; i<follows.length;i++) {
-            if (follows[i].equals(name)) {
+            if (follows[i].equals(newName)) {
                 return false;
             }
             if (follows[i].equals(null)) {
-                follows[i] = name;
+                follows[i] = newName;
                 return true;
             }
         }
@@ -76,10 +81,15 @@
      *  If the name is not in the list, does nothing and returns false. */
     public boolean removeFollowee(String name) {
         //// Replace the following statement with your code
+        char firstL = name.charAt(0);
+        if (firstL >= 'a' && firstL <= 'z') {
+            firstL = (char) (firstL - 32);
+        }
+        String newName = firstL + name.substring(1);
         boolean isTheUser = false;
         for (int i=0;i<follows.length;i++) {
             if (!isTheUser) {
-                if (follows[i].equals(name)) {
+                if (follows[i].equals(newName)) {
                     if (i!=follows.length-1) {
                         follows[i] = follows [i+1];
                     }
