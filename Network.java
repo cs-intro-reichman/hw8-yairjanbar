@@ -176,9 +176,14 @@ public class Network {
     public String toString() {
        //// Replace the following statement with your code
        String result = "Network:";
-       for (int i=0; i<userCount;i++) {
-            result = result + "\n" + users[i].toString() + " ->";
-       }
+       for (int i = 0; i < userCount; i++) {
+        String followees = users[i].toString();
+        if (!followees.equals("")) {
+            result += "\n" + followees + " ->";
+        } else {
+            result += "\n" + followees;
+        }
+    }
        return result;
     }
 }
