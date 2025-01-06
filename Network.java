@@ -49,6 +49,9 @@ public class Network {
     *  Otherwise, creates a new user with the given name, adds the user to this network, and returns true. */
     public boolean addUser(String name) {
         //// Replace the following statement with your code
+        if (name == null) {
+            return false;
+        }
         char firstL = name.charAt(0);
         if (firstL >= 'a' && firstL <= 'z') {
             firstL = (char) (firstL - 32);
@@ -72,6 +75,9 @@ public class Network {
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
         //// Replace the following statement with your code
+        if (name1 == null || name2 == null) {
+            return false;
+        }
         char firstL1 = name1.charAt(0);
         if (firstL1 >= 'a' && firstL1 <= 'z') {
             firstL1 = (char) (firstL1 - 32);
@@ -104,6 +110,22 @@ public class Network {
      *  the user that has the maximal mutual number of followees as the user with the given name. */
     public String recommendWhoToFollow(String name) {
         //// Replace the following statement with your code
+        User mostRecommendedUserToFollow = null;
+        User currentUser = getUser(name);
+        int recommemd = 0;
+        for (int i=0;i<userCount;i++) {
+            if(users[i].equals(currentUser)) {
+                continue;
+            }
+            int mutualFrineds = currentUser.countMutual(users[i]);
+            if (recommemd < mutualFrineds) {
+                recommemd = mutualFrineds;
+                mostRecommendedUserToFollow = users[i];
+            }
+        }
+        if (mostRecommendedUserToFollow != null) {
+            return mostRecommendedUserToFollow.getName();
+        }
         return null;
     }
 
