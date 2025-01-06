@@ -97,6 +97,7 @@
                     else {
                         follows[i] = null;
                     }
+                    fCount--;
                     isTheUser = true;
                 }
             }
@@ -134,6 +135,15 @@
      *  (if two users follow each other, they are said to be "friends.") */
     public boolean isFriendOf(User other) {
         //// Replace the following statement with your code
+        for (int i =0;i<this.follows.length;i++) {
+            if (this.follows[i] == other.name) {
+                for (int j =0;j<other.follows.length;j++) {
+                    if (other.follows[j] == this.name) {
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
     /** Returns this user's name, and the names that s/he follows. */
