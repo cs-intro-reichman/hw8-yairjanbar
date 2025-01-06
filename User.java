@@ -66,11 +66,12 @@
         }
         String newName = firstL + name.substring(1);
         for (int i=0; i<follows.length;i++) {
-            if (follows[i].equals(newName)) {
+            if (follows[i] != null && follows[i].equals(newName)) {
                 return false;
             }
-            if (follows[i] != null) {
+            if (follows[i] == null) {
                 follows[i] = newName;
+                fCount++;
                 return true;
             }
         }
@@ -89,7 +90,7 @@
         boolean isTheUser = false;
         for (int i=0;i<follows.length;i++) {
             if (!isTheUser) {
-                if (follows[i].equals(newName)) {
+                if (follows[i] != null && follows[i].equals(newName)) {
                     if (i!=follows.length-1) {
                         follows[i] = follows [i+1];
                     }
