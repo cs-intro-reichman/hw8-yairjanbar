@@ -69,7 +69,7 @@
             if (follows[i].equals(newName)) {
                 return false;
             }
-            if (follows[i].equals(null)) {
+            if (follows[i] != null) {
                 follows[i] = newName;
                 return true;
             }
@@ -116,7 +116,17 @@
     /*  Notice: This is the size of the intersection of the two follows lists. */
     public int countMutual(User other) {
          //// Replace the following statement with your code
-        return 0;
+        int countFollowers = 0;
+        for (int i =0;i<this.follows.length;i++) {
+            if (this.follows[i] != null) {
+                for (int j =0;j<other.follows.length;j++) {
+                    if (other.follows[j] != null && other.follows[j].equals(this.follows[i])) {
+                        countFollowers++;
+                    }
+                }
+            }
+        }
+        return countFollowers;
     }
 
     /** Checks is this user is a friend of the other user.
