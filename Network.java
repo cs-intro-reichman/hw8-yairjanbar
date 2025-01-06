@@ -101,7 +101,9 @@ public class Network {
         User user1 = getUser(newName1);
         User user2 = getUser(newName2);
         if (user1!=null && user2!=null) {
-            user1.addFollowee(newName2);
+            if(user1.addFollowee(newName2)) {
+                return true;
+            }
         }
         return false;
     }
@@ -139,7 +141,11 @@ public class Network {
             User currentUser = users[i];
             if (followeeCount(currentUser.getName())>max) {
                 mostPopular = currentUser;
+                max = followeeCount(currentUser.getName());
             }
+        }
+        if (mostPopular == null) {
+            return null;
         }
         return mostPopular.getName();
     }
