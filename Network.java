@@ -177,12 +177,14 @@ public class Network {
        //// Replace the following statement with your code
        String result = "Network:";
        for (int i = 0; i < userCount; i++) {
+        String user = users[i].getName();
         String followees = users[i].toString();
-        if (followees != null && !followees.isEmpty()) {
-            result += "\n" + followees + " ->";
+        result += "\n" + user;
+        if (followees != null && !followees.equals("")) {
+            result += " -> " + followees;
         } else {
-            result += "\n" + followees;
-        } 
+            result += " ->";
+        }
         }
        return result;
     }
