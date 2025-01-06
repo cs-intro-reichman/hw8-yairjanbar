@@ -72,6 +72,31 @@ public class Network {
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
         //// Replace the following statement with your code
+        char firstL1 = name1.charAt(0);
+        if (firstL1 >= 'a' && firstL1 <= 'z') {
+            firstL1 = (char) (firstL1 - 32);
+        }
+        String newName1 = firstL1 + name1.substring(1);
+        char firstL2 = name2.charAt(0);
+        if (firstL2 >= 'a' && firstL2 <= 'z') {
+            firstL2 = (char) (firstL2 - 32);
+        }
+        String newName2 = firstL2 + name2.substring(1);
+        boolean isInNet1 = false, isInNet2= false;
+        for (int i=0;i<userCount;i++) {
+            if (users[i].getName().equals(newName1)) {
+                isInNet1=true;
+            }
+            if (users[i].getName().equals(newName2)) {
+                isInNet2=true;
+            }
+        }
+        if (isInNet1 == false || isInNet2 == false) return false;
+        User user1 = getUser(newName1);
+        User user2 = getUser(newName2);
+        if (user1!=null && user2!=null) {
+            user1.addFollowee(newName2);
+        }
         return false;
     }
     
