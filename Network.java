@@ -30,6 +30,11 @@ public class Network {
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
         //// Replace the following statement with your code
+        for (int i=0;i<userCount;i++) {
+            if (users[i].getName().equals(name)) {
+                return users[i];
+            }
+        }
         return null;
     }
 
@@ -74,6 +79,10 @@ public class Network {
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
        //// Replace the following statement with your code
-       return null;
+       String result = "Network:\n";
+       for (int i=0; i<userCount;i++) {
+            result = result + users[i].toString() + " ->\n";
+       }
+       return result;
     }
 }
