@@ -88,6 +88,9 @@ public class Network {
             firstL2 = (char) (firstL2 - 32);
         }
         String newName2 = firstL2 + name2.substring(1);
+        if (newName1.equals(newName2)) {
+            return false;
+        }
         boolean isInNet1 = false, isInNet2= false;
         for (int i=0;i<userCount;i++) {
             if (users[i].getName().equals(newName1)) {
@@ -172,9 +175,9 @@ public class Network {
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
        //// Replace the following statement with your code
-       String result = "Network:\n";
+       String result = "Network:";
        for (int i=0; i<userCount;i++) {
-            result = result + users[i].toString() + " ->\n";
+            result = result + "\n" + users[i].toString() + " ->";
        }
        return result;
     }
