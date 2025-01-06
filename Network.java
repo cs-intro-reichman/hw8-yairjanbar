@@ -30,8 +30,13 @@ public class Network {
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
         //// Replace the following statement with your code
+        char firstL = name.charAt(0);
+        if (firstL >= 'a' && firstL <= 'z') {
+            firstL = (char) (firstL - 32);
+        }
+        String newName = firstL + name.substring(1);
         for (int i=0;i<userCount;i++) {
-            if (users[i].getName().equals(name)) {
+            if (users[i].getName().equals(newName)) {
                 return users[i];
             }
         }
@@ -44,7 +49,22 @@ public class Network {
     *  Otherwise, creates a new user with the given name, adds the user to this network, and returns true. */
     public boolean addUser(String name) {
         //// Replace the following statement with your code
-        return false;
+        char firstL = name.charAt(0);
+        if (firstL >= 'a' && firstL <= 'z') {
+            firstL = (char) (firstL - 32);
+        }
+        String newName = firstL + name.substring(1);
+        if (userCount == users.length) {
+            return false;
+        }
+        for (int i=0;i<userCount;i++) {
+            if (users[i].getName().equals(newName)) {
+                return false;
+            }
+        }
+        users[userCount] = new User(newName);
+        userCount++;
+        return true;
     }
 
     /** Makes the user with name1 follow the user with name2. If successful, returns true.
